@@ -62,7 +62,7 @@ if(isset($_GET['cb_keliakia'])){
 
 $query = htmlspecialchars($query); //muuntaa html merkit sopiviksi
 
-$query = mysqli_real_escape_string($query); //estää sql-injektion
+$query = mysqli_real_escape_string($conn, $query); //estää sql-injektion
 
 $rawresults = mysqli_query($query);
 
