@@ -10,66 +10,66 @@ require "includes/dbh.inc.php";
 
 <main>
 
-<button type="button" class="btn" style="background-color:#C1727B"><a href="haku.php">UUSI HAKU</button>
+<button type="button" class="btn" style="background-color:#C1727B"><a href="haku.php">UUSI HAKU</button><br><br>
 
 <?php
 
 $query = "SELECT * FROM ravitsemusterapeutti AS rt
-INNER JOIN henkilonerityisosaaminen AS he ON rt.HENKILO_ID = he.HENKILO_ID
-INNER JOIN erityisosaaminen AS eo ON he.ERITYISOSAAMINEN_ID = eo.ERITYISOSAAMINEN_ID"; //hakulausekkeen alku
+INNER JOIN henkilonerityisosaaminen AS he ON he.HENKILO_ID = rt.HENKILO_ID
+INNER JOIN erityisosaaminen AS eo ON eo.ERITYISOSAAMINEN_ID = he.ERITYISOSAAMINEN_ID"; //hakulausekkeen alku
 $i = 0; //laskuri
 
 if(isset($_GET['nimi'])){
 	$qnimi = $_GET['nimi'];
-	if($i==0){
-		$query = $query . " WHERE " . "(`rt.ETUNIMI` LIKE '%".$qnimi."%') OR (`rt.SUKUNIMI` LIKE '%".$qnimi."%')";
-		$i++;
-	}
-	else{
-		$query = $query . " AND " . "(`rt.ETUNIMI` LIKE '%".$qnimi."%') OR (`rt.SUKUNIMI` LIKE '%".$qnimi."%')";
+	if($qnimi != ""){
+		if($i==0){
+			$query = $query . " WHERE " . "(rt.ETUNIMI LIKE '%" . $qnimi . "%') OR (rt.SUKUNIMI LIKE '%" . $qnimi . "%')";
+			$i++;
+		}
+		else{
+			$query = $query . " AND " . "(rt.ETUNIMI LIKE '%" . $qnimi . "%') OR (rt.SUKUNIMI LIKE '%" . $qnimi . "%')";
+		}
 	}
 }
 if(isset($_GET['paikkakunta'])){
 	$qpaikkakunta = $_GET['paikkakunta'];
-	if($i==0){
-		$query = $query . " WHERE " . "(`rt.PAIKKAKUNTA`='".$qpaikkakunta."')";
-		$i++;
-	}
-	else{
-		$query = $query . " AND " . "(`rt.PAIKKAKUNTA`='".$qpaikkakunta."')";
-	}
-}
-if(isset($_GET['cb_diabetes'])){
-	$qcb_diabetes = $_GET['cb_diabetes'];
-	if($i==0){
-		$query = $query . " WHERE " . "(`eo.OSAAMISEN_NIMI`='".$qcb_diabetes."')";
-		$i++;
-	}
-	else{
-		$query = $query . " AND " . "(`eo.OSAAMISEN_NIMI`='".$qcb_diabetes."')";
+	if($qpaikkakunta != "Paikkakunta"){
+		if($i==0){
+			$query = $query . " WHERE " . "(rt.PAIKKAKUNTA='" . $qpaikkakunta . "')";
+			$i++;
+		}
+		else{
+			$query = $query . " AND " . "(rt.PAIKKAKUNTA='" . $qpaikkakunta . "')";
+		}
 	}
 }
-if(isset($_GET['cb_keliakia'])){
-	$qcb_keliakia = $_GET['cb_keliakia'];
-	if($i==0){
-		$query = $query . " WHERE " . "(`eo.OSAAMISEN_NIMI`='".$qcb_keliakia."')";
-		$i++;
-	}
-	else{
-		$query = $query . " AND " . "(`eo.OSAAMISEN_NIMI`='".$qcb_keliakia."')";
+if(isset($_GET['cbox'])){
+	$qcbox = $_GET['cbox'];
+	foreach($qcbox as $var){
+		if($i==0){
+			$query = $query . " WHERE " . "(eo.OSAAMISEN_NIMI='" . $var . "')";
+			$i++;
+			echo $var;
+		}
+		else{
+			$query = $query . " AND " . "(eo.OSAAMISEN_NIMI='" . $var . "')";
+			echo $var;
+		}
 	}
 }
 
+$query = $query . ";"; //hakulausekkeen loppu
+/*
 $query = htmlspecialchars($query); //muuntaa html merkit sopiviksi
 
 $query = mysqli_real_escape_string($conn, $query); //estää sql-injektion
-
-$rawresults = mysqli_query($query);
+*/
+$rawresults = mysqli_query($conn, $query);
 
 if(mysqli_num_rows($rawresults) > 0){ //jos tuloksia on
 	while($results = mysqli_fetch_array($rawresults)){ //looppaa kun tietojen siirto tauluun onnistuu
 		echo $results['ETUNIMI'].$results['SUKUNIMI'].$results['PAIKKAKUNTA'].$results['OSOITE']
-		.$results['EMAIL'].$results['PUHELINNRO'];
+		.$results['EMAIL'].$results['PUHELINNRO']."<br>";
 	}
 }
 else{ //jos tuloksia ei ole
