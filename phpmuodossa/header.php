@@ -18,16 +18,16 @@ session_start();
   .searchbar{
    <font face="CelebriSans">
   }
-
+  
   </style>
-
+  
 </head>
 <body>
 <header>
 
 <!--Headeriin sisältyy Logo, linkit some juttuihin, (Osaajamme, palvelumme sunmuut linkit) -->
 <div class="jumbotron text-center" style="margin-bottom:0">
-  <h1><div class="container">
+  <h1><div class="container">         
   <a href="index.php"><img src="logo.png" alt="logo" width =100% > </a>
 </div>
 </div>
@@ -42,7 +42,7 @@ session_start();
    <a class="navbar-brand" href="#">
     <img src="twitter.png" alt="twitter" style="width:40px;">
   </a>
-
+  
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -56,12 +56,12 @@ session_start();
       </li>
       <li class="nav-item3">
         <a class="nav-link" href="#">RAVITSEMUSTIEDE</a>
-      </li>
+      </li>  
       <li class="nav-item4">
         <a class="nav-link" href="#">OTA YHTEYTTÄ</a>
-      </li>
+      </li>  
     </ul>
-  </div>
+  </div>  
 </nav>
 
 
