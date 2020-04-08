@@ -6,6 +6,9 @@
 <main>
 <h2><b>Muokkaa tietoja</b></h2>
 <?php
+	if(!isset($_SESSION['email'])){
+		header("Location: index.php?error=accessDenied");
+	}
 if(isset($_GET['change'])){
 	if($_GET['change']== "succesful"){
 		echo '<h1>Tiedot Tallennettu!</h1>';
