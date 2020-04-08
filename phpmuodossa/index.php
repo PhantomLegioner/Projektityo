@@ -3,6 +3,17 @@
 	require "header_login.php";
 ?>
 <main>
+	<?php
+	if(isset($_SESSION['email'])){
+		
+		require "tiedot.php";
+	}
+	if(isset($_GET['error'])){
+		if($_GET['error']== "accessDenied"){
+			echo '<h1>Et ole kirjautunut sisään.</h1>';
+		}
+	}
+?>
 <div class="container" style="margin-top:30px">
   <div class="row">
     <div class="col-sm-4">
