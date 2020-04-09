@@ -10,6 +10,7 @@ if(isset($_POST['tallenna_submit'])){
 	$osoite = $_POST['osoite'];
 	$puhelin = $_POST['puhelinnumero'];
 	$email = $_POST['email'];
+	$kuvaus = $_POST['kuvaus'];
 	
 	if(!empty($etunimi)){
 		$sql = "UPDATE ravitsemusterapeutti SET ETUNIMI='".$etunimi."' WHERE EMAIL='".$email."'";
@@ -67,6 +68,18 @@ if(isset($_POST['tallenna_submit'])){
 			//mysqli_stmt_bind_param($stmt, "ss",$etunimi,$email);
 			mysqli_stmt_execute($stmt);
 			$_SESSION['puhelin'] = $puhelin;
+		}
+	}if(!empty($kuvaus)){
+		$sql = "UPDATE ravitsemusterapeutti SET KUVAUS='".$kuvaus."' WHERE EMAIL='".$email."'";
+		$stmt = mysqli_stmt_init($conn);
+		if(!mysqli_stmt_prepare($stmt,$sql)){
+			header("Location: ../profiili.php?error=sqlerror");
+			exit();
+		}else{
+			//mysqli_stmt_bind_param($stmt, "ss",$etunimi,$email);
+			mysqli_stmt_execute($stmt);
+			
+		$_SESSION['kuvaus'] = $kuvaus;
 		}
 	}
 	
@@ -138,6 +151,19 @@ else if(isset($_POST['btn_etunimi'])){
 		
 		mysqli_stmt_execute($stmt);
 		$_SESSION['puhelin'] = "";
+	}
+	header("Location: ../profiili.php?delete=success");
+	
+}else if(isset($_POST['btn_kuvaus'])){
+	$sql = "UPDATE ravitsemusterapeutti SET KUVAUS='' WHERE EMAIL='".$email."'";
+	$stmt = mysqli_stmt_init($conn);
+	if(!mysqli_stmt_prepare($stmt,$sql)){
+		header("Location: ../profiili.php?error=delete6");
+		exit();
+	}else{
+		
+		mysqli_stmt_execute($stmt);
+		$_SESSION['kuvaus'] = "";
 	}
 	header("Location: ../profiili.php?delete=success");
 	
