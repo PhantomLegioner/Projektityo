@@ -71,7 +71,7 @@ if (isset($_POST['rekisteröidy-laheta'])) {
         }
         else {
           $hashedSalasana = password_hash($salasana, PASSWORD_DEFAULT);
-          mysqli_stmt_bind_param($stmt, "ssssssi", $etunimi, $sukunimi, $paikkakunta, $osoite, $sahkoposti, $salasana, $puhelinnumero);
+          mysqli_stmt_bind_param($stmt, "ssssssi", $etunimi, $sukunimi, $paikkakunta, $osoite, $sahkoposti, $hashedSalasana, $puhelinnumero);
           mysqli_stmt_execute($stmt);
           header("Location: ../signup.php?signup=success");
           exit();
