@@ -23,23 +23,32 @@ if(isset($_GET['nimi'])){
 	$qnimi = $_GET['nimi'];
 	if($qnimi != ""){
 		if($i==0){
-			$query = $query . " WHERE " . "(rt.ETUNIMI LIKE '%" . $qnimi . "%') OR (rt.SUKUNIMI LIKE '%" . $qnimi . "%')";
+			$query = $query . " WHERE " . "(rt.KOKONIMI LIKE '%" . $qnimi . "%')"; //OR (rt.SUKUNIMI LIKE '%" . $qnimi . "%')";
 			$i++;
 		}
 		else{
-			$query = $query . " AND " . "(rt.ETUNIMI LIKE '%" . $qnimi . "%') OR (rt.SUKUNIMI LIKE '%" . $qnimi . "%')";
+			$query = $query . " AND " . "(rt.KOKONIMI LIKE '%" . $qnimi . "%')"; //OR (rt.SUKUNIMI LIKE '%" . $qnimi . "%')";
 		}
 	}
 }
 if(isset($_GET['paikkakunta'])){
 	$qpaikkakunta = $_GET['paikkakunta'];
-	if($qpaikkakunta != "Paikkakunta"){
+	if($qpaikkakunta != "Paikkakunta" && $qpaikkakunta != "Etayhteys"){
 		if($i==0){
 			$query = $query . " WHERE " . "(rt.PAIKKAKUNTA='" . $qpaikkakunta . "')";
 			$i++;
 		}
 		else{
 			$query = $query . " AND " . "(rt.PAIKKAKUNTA='" . $qpaikkakunta . "')";
+		}
+	}
+	if($qpaikkakunta == "Etayhteys"){
+		if($i==0){
+			$query = $query . " WHERE " . "(rt.ETAYHTEYS=1)";
+			$i++;
+		}
+		else{
+			$query = $query . " AND " . "(rt.ETAYHTEYS=1)";
 		}
 	}
 }
@@ -49,11 +58,11 @@ if(isset($_GET['cbox'])){
 		if($i==0){
 			$query = $query . " WHERE " . "(eo.OSAAMISEN_NIMI='" . $var . "')";
 			$i++;
-			echo $var;
+			//echo $var;
 		}
 		else{
 			$query = $query . " AND " . "(eo.OSAAMISEN_NIMI='" . $var . "')";
-			echo $var;
+			//echo $var;
 		}
 	}
 }
@@ -68,8 +77,8 @@ $rawresults = mysqli_query($conn, $query);
 
 if(mysqli_num_rows($rawresults) > 0){ //jos tuloksia on
 	while($results = mysqli_fetch_array($rawresults)){ //looppaa kun tietojen siirto tauluun onnistuu
-		echo $results['ETUNIMI'].$results['SUKUNIMI'].$results['PAIKKAKUNTA'].$results['OSOITE']
-		.$results['EMAIL'].$results['PUHELINNRO']."<br>";
+		echo $results['KOKONIMI']."<br>".$results['KOULUTUS']."<br>".$results['PAIKKAKUNTA']."<br>".$results['KUVAUS']
+		."<br>".$results['EMAIL']."<br>".$results['PUHELINNRO']."<br><br>";
 	}
 }
 else{ //jos tuloksia ei ole
