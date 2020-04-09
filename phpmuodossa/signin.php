@@ -39,7 +39,7 @@ if(isset($_POST['signin_submit'])){
 					$_SESSION['paikkakunta'] = $row['PAIKKAKUNTA'];
 					$_SESSION['osoite'] = $row['OSOITE'];
 					$_SESSION['puhelin'] = $row['PUHELINNRO'];
-					
+					$_SESSION['kuvaus'] = $row['KUVAUS'];
 					header("Location: index.php?login=success");
 					exit();
 					
