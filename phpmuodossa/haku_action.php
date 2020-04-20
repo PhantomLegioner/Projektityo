@@ -22,11 +22,11 @@ if(isset($_GET['nimi'])){
 	$qnimi = $_GET['nimi'];
 	if($qnimi != ""){
 		if($i==0){
-			$query = $query . " WHERE " . "(r.KOKONIMI LIKE '%" . $qnimi . "%')"; //OR (rt.SUKUNIMI LIKE '%" . $qnimi . "%')";
+			$query = $query . " WHERE " . "(r.ETUNIMI LIKE '%" . $qnimi . "%') OR (rt.SUKUNIMI LIKE '%" . $qnimi . "%')";
 			$i++;
 		}
 		else{
-			$query = $query . " AND " . "(r.KOKONIMI LIKE '%" . $qnimi . "%')"; //OR (rt.SUKUNIMI LIKE '%" . $qnimi . "%')";
+			$query = $query . " AND " . "(r.ETUNIMI LIKE '%" . $qnimi . "%') OR (rt.SUKUNIMI LIKE '%" . $qnimi . "%')";
 		}
 	}
 }
@@ -72,10 +72,10 @@ if(isset($_GET['cbox'])){
 			$c++;
 		}
 	}
-	$query = $query . ") GROUP BY r.KOKONIMI HAVING COUNT(*) = " . $c;
+	$query = $query . ") GROUP BY r.HENKILO_ID HAVING COUNT(*) = " . $c;
 }
 else{
-	$query = $query . " GROUP BY r.KOKONIMI";
+	$query = $query . " GROUP BY r.HENKILO_ID";
 }
 
 $query = $query . ";"; //hakulausekkeen loppu
@@ -88,7 +88,7 @@ $rawresults = mysqli_query($conn, $query);
 
 if(mysqli_num_rows($rawresults) > 0){ //jos tuloksia on
 	while($results = mysqli_fetch_array($rawresults)){ //looppaa kun tietojen siirto tauluun onnistuu
-		echo $results['KOKONIMI']."<br>".$results['KOULUTUS']."<br>".$results['PAIKKAKUNTA'];
+		echo $results['ETUNIMI']." ".$results['SUKUNIMI']."<br>".$results['KOULUTUS']."<br>".$results['PAIKKAKUNTA'];
 		
 		if ($results['ETAYHTEYS'] == 1){
 			echo ", etäyhteys";
@@ -102,7 +102,7 @@ if(mysqli_num_rows($rawresults) > 0){ //jos tuloksia on
 			$equery = "SELECT e.OSAAMISEN_NIMI FROM ravitsemusterapeutti r
 			JOIN henkilonerityisosaaminen h ON h.HENKILO_ID = r.HENKILO_ID
 			JOIN erityisosaaminen e ON e.ERITYISOSAAMINEN_ID = h.ERITYISOSAAMINEN_ID
-			WHERE r.KOKONIMI='" . $results['KOKONIMI'] . "';";
+			WHERE r.HENKILO_ID='" . $results['HENKILO_ID'] . "';";
 			
 			$erawresults = mysqli_query($conn, $equery);
 			
