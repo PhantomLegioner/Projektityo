@@ -16,7 +16,7 @@
 				<option value="Kuopio">Kuopio</option>
 				<option value="Tampere">Tampere</option>
 			</select> <br>
-			
+
 			<input type="checkbox" name="cbox[]" id="cbox" value="Ruoanvalinta helpommaksi">Ruoanvalinta helpommaksi<br>
 			<input type="checkbox" name="cbox[]" id="cbox" value="Energisempi arki">Energisempi arki<br>
 			<input type="checkbox" name="cbox[]" id="cbox" value="Liikkujan ravitsemus">Liikkujan ravitsemus<br>
@@ -26,7 +26,7 @@
 			<input type="checkbox" name="cbox[]" id="cbox" value="Tyypin 1 Diabetes">Tyypin 1 diabetes<br>
 			<input type="checkbox" name="cbox[]" id="cbox" value="Suolistosairaudet  ja vatsaongelmat">Suolistosairaudet ja vatsaongelmat<br>
 			<input type="checkbox" name="cbox[]" id="cbox" value="Lapsiperheen ravitsemus">Lapsiperheen ravitsemus<br>
-			
+
 			<input type="submit" value="Hae">
 		</form>
 	</div>

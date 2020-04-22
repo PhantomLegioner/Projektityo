@@ -1,12 +1,13 @@
 <?php
 	require "header.php";
 ?>
-
+<!doctype html>
+<html lang="en">
 <main>
   <div class="wrapper-main">
     <section class="section-default">
     <h1>Ajanvaraussivu</h1>
-    <form action="" method="post"> <!-- Ajanvaraus-skriptin osoite -->
+    <form action="includes/reservetime.inc.php" method="post"> <!-- Ajanvaraus-skriptin osoite -->
       Oma etunimi <input type="text" name="etunimi" placeholder="Varaajan etunimi"><br />
       Oma sukunimi <input type="text" name="sukunimi" placeholder="Varaajan sukunimi"><br />
 			Puhelinnumero <input type="text" name="puhelinnumero" placeholder="Puhelinnumerosi"><br />
@@ -16,12 +17,13 @@
       Haluttu palvelu
 				<select name = "palvelu">
 					<option value ="P"> Valitse palvelu...</option>
+					<option value ="palvelu1"> palvelu1</option>
 				</select></br>
 			<html lang="en">
 			<head>
 			  <meta charset="utf-8">
 			  <meta name="viewport" content="width=device-width, initial-scale=1">
-			  <title>jQuery UI Datepicker - Default functionality</title>
+			  <title>Ajanvaraus</title>
 			  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 			  <link rel="stylesheet" href="/resources/demos/style.css">
 			  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -39,62 +41,66 @@
 				Aloitusaika
 				<select name = "aloitusaika">
 					<option value =""> Valitse aika...</option>
-					<option value ="T"> 0:00</option>
-					<option value ="T"> 01:00</option>
-					<option value ="T"> 02:00</option>
-					<option value ="T"> 03:00</option>
-					<option value ="T"> 04:00</option>
-					<option value ="T"> 05:00</option>
-					<option value ="T"> 06:00</option>
-					<option value ="T"> 07:00</option>
-					<option value ="T"> 08:00</option>
-					<option value ="T"> 09:00</option>
-					<option value ="T"> 10:00</option>
-					<option value ="T"> 11:00</option>
-					<option value ="T"> 12:00</option>
-					<option value ="T"> 13:00</option>
-					<option value ="T"> 14:00</option>
-					<option value ="T"> 15:00</option>
-					<option value ="T"> 16:00</option>
-					<option value ="T"> 17:00</option>
-					<option value ="T"> 18:00</option>
-					<option value ="T"> 19:00</option>
-					<option value ="T"> 20:00</option>
-					<option value ="T"> 21:00</option>
-					<option value ="T"> 22:00</option>
-					<option value ="T"> 23:00</option>
+					<option value ="0:00"> 0:00</option>
+					<option value ="01:00"> 01:00</option>
+					<option value ="02:00"> 02:00</option>
+					<option value ="03:00"> 03:00</option>
+					<option value ="04:00"> 04:00</option>
+					<option value ="05:00"> 05:00</option>
+					<option value ="06:00"> 06:00</option>
+					<option value ="07:00"> 07:00</option>
+					<option value ="08:00"> 08:00</option>
+					<option value ="09:00"> 09:00</option>
+					<option value ="10:00"> 10:00</option>
+					<option value ="11:00"> 11:00</option>
+					<option value ="12:00"> 12:00</option>
+					<option value ="13:00"> 13:00</option>
+					<option value ="14:00"> 14:00</option>
+					<option value ="15:00"> 15:00</option>
+					<option value ="16:00"> 16:00</option>
+					<option value ="17:00"> 17:00</option>
+					<option value ="18:00"> 18:00</option>
+					<option value ="19:00"> 19:00</option>
+					<option value ="20:00"> 20:00</option>
+					<option value ="21:00"> 21:00</option>
+					<option value ="22:00"> 22:00</option>
+					<option value ="23:00"> 23:00</option>
 				</select><br/>
 				Lopetusaika
 					<select name = "lopetusaika">
-						<option value ="T2"> Valitse aika...</option>
-						<option value ="T2"> 0:00</option>
-						<option value ="T2"> 01:00</option>
-						<option value ="T2"> 02:00</option>
-						<option value ="T2"> 03:00</option>
-						<option value ="T2"> 04:00</option>
-						<option value ="T2"> 05:00</option>
-						<option value ="T2"> 06:00</option>
-						<option value ="T2"> 07:00</option>
-						<option value ="T2"> 08:00</option>
-						<option value ="T2"> 09:00</option>
-						<option value ="T2"> 10:00</option>
-						<option value ="T2"> 11:00</option>
-						<option value ="T2"> 12:00</option>
-						<option value ="T2"> 13:00</option>
-						<option value ="T2"> 14:00</option>
-						<option value ="T2"> 15:00</option>
-						<option value ="T2"> 16:00</option>
-						<option value ="T2"> 17:00</option>
-						<option value ="T2"> 18:00</option>
-						<option value ="T2"> 19:00</option>
-						<option value ="T2"> 20:00</option>
-						<option value ="T2"> 21:00</option>
-						<option value ="T2"> 22:00</option>
-						<option value ="T2"> 23:00</option>
+						<option value =""> Valitse aika...</option>
+						<option value ="0:00"> 0:00</option>
+						<option value ="01:00"> 01:00</option>
+						<option value ="02:00"> 02:00</option>
+						<option value ="03:00"> 03:00</option>
+						<option value ="04:00"> 04:00</option>
+						<option value ="05:00"> 05:00</option>
+						<option value ="06:00"> 06:00</option>
+						<option value ="07:00"> 07:00</option>
+						<option value ="08:00"> 08:00</option>
+						<option value ="09:00"> 09:00</option>
+						<option value ="10:00"> 10:00</option>
+						<option value ="11:00"> 11:00</option>
+						<option value ="12:00"> 12:00</option>
+						<option value ="13:00"> 13:00</option>
+						<option value ="14:00"> 14:00</option>
+						<option value ="15:00"> 15:00</option>
+						<option value ="16:00"> 16:00</option>
+						<option value ="17:00"> 17:00</option>
+						<option value ="18:00"> 18:00</option>
+						<option value ="19:00"> 19:00</option>
+						<option value ="20:00"> 20:00</option>
+						<option value ="21:00"> 21:00</option>
+						<option value ="22:00"> 22:00</option>
+						<option value ="23:00"> 23:00</option>
 					</select></br>
       <button type="submit" name="varaa-laheta">Lähetä Varaus</button><br />
     </form>
 
   </div>
-
 </main>
+</html>
+
+<?php
+	require "footer.php";
+?>
