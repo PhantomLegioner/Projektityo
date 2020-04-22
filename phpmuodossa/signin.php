@@ -1,5 +1,6 @@
 <?php
-	require "header_login.php";
+	//require "header_login.php";
+	require "header.php";
 ?>
 <main>
 

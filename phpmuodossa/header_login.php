@@ -1,6 +1,5 @@
 <!-- Tämä on osana headeria mutta tätä ei tarvita joka sivulla. Aloitus sivulla (index.php) löytyy mutta haku sivulla nyt ei varmaan kirjautumis juttuja tarvita. -->
 <nav class="navbar navbar-expand-sm  navbar-dark" style="background-color:#C1727B">
-
   <?php
      if(isset($_SESSION['email'])){
        echo '<p>Olet kirjautunut sisään!</p><form action="includes/logout.inc.php" method="post">
